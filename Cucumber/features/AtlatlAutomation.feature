@@ -2,7 +2,7 @@ Feature: Atlatl automation test
 	Scenario: User cannot login with invalid password	
 		Given user is on the login screen
 		 When user enters a valid username and invalid password
-		 	| 			email				|
+		 	| 			email		|
 			| 	atlatlautomation@gmail.com	|
  		 
 		 Then user is not logged in
@@ -10,7 +10,7 @@ Feature: Atlatl automation test
 	Scenario: Login to gmail
 		Given user is on the login screen
 		 When email and password entered are
-		 	| 			email				| 		password		|
+		 	| 			email		| 		password	|
 			| 	atlatlautomation@gmail.com	| 	Atlatl1234567890!	|
 			
 		 Then the user is logged in
@@ -19,7 +19,7 @@ Feature: Atlatl automation test
 		Given user is logged in and on the gmail screen
 		 When user presses compose
 		 And user enters a valid recipient 	 
-			| 			email				|
+			| 			email		|
 			| 	atlatlautomation@gmail.com	|
 		 		 
 		 And user enters a subject
