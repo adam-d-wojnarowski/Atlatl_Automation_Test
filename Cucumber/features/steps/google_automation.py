@@ -1,11 +1,11 @@
 import time
-import re
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.common.exceptions import NoSuchElementException
 #test if a user is on the login screen
 @given('user is on the login screen')
 def step_impl(context):
+	#using this absurdly long url to ensure users aren't redirected to the wrong page sometimes
 	context.browser.get("https://accounts.google.com/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&service=mail&sacu=1&rip=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin")
 	assert context.browser.title == "Gmail"
 
@@ -30,6 +30,7 @@ def step_impl(context):
 		passwordfield.clear()
 		passwordfield.send_keys("bogus password")
 		passwordfield.send_keys(Keys.RETURN)
+		#wait for login to verify
 		time.sleep(5)
 
 @then('user is not logged in')
@@ -51,15 +52,13 @@ def step_impl(context):
 
 		#wait for chrome to verify username (if a connection is REALLY bad 2 seconds isn't enough)
 		time.sleep(2)
-		
-		#todo: make sure a valid username is entered
-		#todo: write a useful log of why this failed
 
 		passwordfield = context.browser.find_element_by_name("password")
 		passwordfield.clear()
 		passwordfield.send_keys(password)
 		passwordfield.send_keys(Keys.RETURN)
 
+		#wait to see if we get hit with a captcha
 		time.sleep(5)	
 		title = context.browser.title
 		if title.find("Gmail") != -1:
@@ -109,6 +108,7 @@ def step_impl(context):
 	
 @then('email is sent')
 def step_impl(context):
+	#wait for sent notification to appear
 	time.sleep(1)
 	sent_verification = context.browser.find_element_by_xpath('//div[contains(text(), "Your message has been sent.")]')	
 	assert sent_verification.is_displayed()
@@ -151,6 +151,7 @@ def step_impl(context):
 
 @when('presses the delete button')
 def step_impl(context):	
+	#wait for right click animation to finish
 	time.sleep(0.5)
 	delete = context.browser.find_element_by_xpath('//div[text()="Delete"][@class="J-N-Jz"]')
 	action = ActionChains(context.browser)
@@ -188,15 +189,17 @@ def step_impl(context):
 def step_impl(context):
 	label_input = context.browser.find_element_by_xpath('//input[@class="xx"]')
 	label_input.send_keys("Atlatl Test")
-	time.sleep(0.5)
 	
 @when('presses create')
 def step_impl(context):
+	#wait for text to finish sending
+	time.sleep(0.5)
 	create = context.browser.find_element_by_xpath('//button[text()="Create"]')
 	create.click()
 	
 @then('a folder is created with the name entered')
 def step_impl(context):
+	#wait for folder creation field to be removed
 	time.sleep(1)
 	#simply getting the field of the newly created folder should not throw an exception
 	#if it does this test fails, no assert needed
