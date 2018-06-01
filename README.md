@@ -22,5 +22,11 @@ Since the test is destructive and deletes emails from your inbox I've provided a
 -email atlatlautomation@gmail.com
 
 -password "Atlatl123456789!"
+
+
+
+To run the program, simply open a command window and cd to ${path to the downloaded folder}/Cucumber/features
+
+once there simply type "behave" without the quotes and the test will kick off.
   
   
