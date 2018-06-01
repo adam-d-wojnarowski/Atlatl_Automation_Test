@@ -17,7 +17,7 @@ Known issues:
   
   The folder created in the create folder test is named "Atlatl Test", this must be deleted before each run.
  
-Since the test is destructive and deletes emails from your inbox I've provided a gmail account to see the program run with
+Since the test is destructive and deletes emails from your inbox I've provided a gmail account to see the program run with no worries about losing emails
 
 -email atlatlautomation@gmail.com
 
