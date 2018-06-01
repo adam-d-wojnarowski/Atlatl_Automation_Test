@@ -4,9 +4,11 @@ Coding Test done for Atlatl Software
 This test was completed using Python v 3.6.4, chromedriver v 2.38.552522, and Windows 10.
 
 Before running the program
+  
   -Behave must be installed, this is a semi-official Cucumber library for Python
    open a comand window and run pip install -U behave
    
+  
   -Selenium must be installed
    open a command window and run pip install -U selenium
    
@@ -16,7 +18,9 @@ Known issues:
   The folder created in the create folder test is named "Atlatl Test", this must be deleted before each run.
  
 Since the test is destructive and deletes emails from your inbox I've provided a gmail account to see the program run with
+
 -email atlatlautomation@gmail.com
+
 -password "Atlatl123456789!"
   
   
